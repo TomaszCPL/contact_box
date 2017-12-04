@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Show Contact - Contact List App{% endblock %}
+{% block content %}
+<ul class="nav navbar-nav">
+   <li><a href="/groups/list">Groups</a></li>
+</ul>
+</div>
+<div class="container">
+  <h1>Show Contact</h1>
+    <table class="table table-hover">
+        <tr>
+          <td>Name:</td>
+          <td>{{contact.name}}</td>
+        </tr>
+        <tr>
+          <td>Surame:</td>
+          <td>{{contact.surname}}</td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td>{{contact.description}}</td>
+        </tr>
+        <tr>
+          <td>Address:</td>
+          <td>
+            <ol>
+              {% for address in addresses %}
+                <li>
+                  {{address.city}} {{address.street}} {{address.number_of_house}}
+                </li>
+              {% endfor %}
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td>Phone number: </td>
+          <td>
+            <ol>
+              {% for phone in phones %}
+                <li>
+                  {{phone.number}} {{phone.type_of_phone}}
+                </li>
+              {% endfor %}
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td>Email: </td>
+          <td>
+            <ol>
+              {% for email in emails %}
+                <li>
+                  {{email.email}} {{email.type_of_email}}
+                </li>
+              {% endfor %}
+            </ol>
+          </td>
+        </tr>
+        <tr>
+          <td>Groups: </td>
+          <td>
+            <ol>
+              {% for group in groups %}
+                <li>
+                  {{group.name}}
+                </li>
+              {% endfor %}
+            </ol>
+          </td>
+        </tr>
+    </table>
+    <form method="post">
+      <input type="submit" name="modify" value="modify" class="btn btn-default"/>
+      <input type="submit" name="cancel" value="cancel" class="btn btn-default"/>
+      {% csrf_token %}
+    </form>
+  </div>
+{% endblock %}
